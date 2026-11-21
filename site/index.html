@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>NetherSX2 Save Backup</title>
+  <meta name="description" content="Zips NetherSX2 memory card exports and saves them to Downloads or the share sheet.">
+  <meta name="theme-color" content="#121212">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SaveBackup">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>NetherSX2 Save Backup</h1>
+    <p>Export in NetherSX2 first, then pick the exported files here.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. Export from NetherSX2</h2>
+      <p class="hint">
+        In NetherSX2: menu &rarr; <strong>Transfer Data &rarr; Export</strong>,
+        save to a folder you can get back to, e.g. <code>Documents/NetherSX2</code>.
+        Only file-based memory cards export this way — folder-type cards don't.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>2. Pick the exported files</h2>
+      <div class="picker-row">
+        <button type="button" id="pickFilesBtn" class="secondary">Pick files</button>
+        <button type="button" id="pickFolderBtn" class="secondary">Pick folder</button>
+      </div>
+      <input type="file" id="fileInput" class="hidden-input" multiple>
+      <input type="file" id="folderInput" class="hidden-input" multiple webkitdirectory>
+      <p class="hint" id="selectedSummary">No files selected yet.</p>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="forceFull">
+        Include files unchanged since last backup
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>3. Back up</h2>
+      <div class="actions">
+        <button type="button" id="backupDownloadsBtn" class="primary">Save to Downloads</button>
+        <button type="button" id="backupShareBtn" class="secondary">Share to&hellip;</button>
+      </div>
+      <p class="status" id="status">Ready.</p>
+    </section>
+
+    <section class="card">
+      <h2>Restore a backup</h2>
+      <p class="hint">
+        Extracts the files to Downloads. Move them into your NetherSX2 export
+        folder, then in NetherSX2: <strong>Transfer Data &rarr; Import</strong>.
+      </p>
+      <button type="button" id="restoreZipBtn" class="secondary">Restore from a zip file&hellip;</button>
+      <input type="file" id="restoreZipInput" class="hidden-input" accept=".zip,application/zip">
+    </section>
+
+    <section class="card">
+      <h2>Backup history</h2>
+      <p class="hint" id="historyEmptyHint">No backups yet.</p>
+      <div class="history-list" id="historyList"></div>
+    </section>
+  </main>
+
+  <footer>
+    Everything runs on this phone — files are hashed, zipped, and stored in
+    this browser tab's own storage. Nothing is uploaded anywhere unless you
+    pick a share destination yourself.
+  </footer>
+
+  <script src="vendor/fflate.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

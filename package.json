@@ -1,0 +1,14 @@
+{
+  "name": "nethersx2-save-backup",
+  "version": "1.0.0",
+  "description": "PWA that zips NetherSX2 memory card exports and saves them to Downloads or the share sheet.",
+  "private": true,
+  "scripts": {
+    "gen-icons": "node scripts/gen-icons.js"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "pngjs": "^7.0.0"
+  }
+}
